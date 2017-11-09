@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
@@ -17,48 +19,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     appInit()
-    createSampleCoreData()
-    fetchSampleCoreData()
-    
     return true
   }
   
   // MARK: - Setup App Init
   
-  fileprivate func createSampleCoreData() {
-    let entityDescription = NSEntityDescription.entity(forEntityName: "Student", in: self.managedObjectContext)
-    let newStudents = NSManagedObject(entity: entityDescription!, insertInto: managedObjectContext)
-    newStudents.setValue("Lucio", forKey: "firstName")
-    newStudents.setValue("Lucia", forKey: "lastName")
-    
-    do {
-      try newStudents.managedObjectContext?.save()
-    } catch {
-      print(error.localizedDescription)
-    }
-  }
-  
-  fileprivate func fetchSampleCoreData() {
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
-    
-    let entityDescription = NSEntityDescription.entity(forEntityName: "Student", in: self.managedObjectContext)
-    fetchRequest.entity = entityDescription
-    
-    do {
-      let result = try managedObjectContext.fetch(fetchRequest) as [AnyObject]
-      
-      for student in result {
-        print("First Name: \(student.value(forKey: "firstName")) - Last Name: \(student.value(forKey: "lastName"))")
-      }
-     
-    } catch {
-      print(error.localizedDescription)
-    }
-  }
+//  fileprivate func createSampleCoreData() {
+//    let entityDescription = NSEntityDescription.entity(forEntityName: "Student", in: self.managedObjectContext)
+//    let newStudents = NSManagedObject(entity: entityDescription!, insertInto: managedObjectContext)
+//    newStudents.setValue("Lucio", forKey: "firstName")
+//    newStudents.setValue("Lucia", forKey: "lastName")
+//
+//    let addressEntityDescription = NSEntityDescription.entity(forEntityName: "Address", in: self.managedObjectContext)
+//    let newAddress = NSManagedObject(entity: addressEntityDescription!, insertInto: managedObjectContext)
+//    newAddress.setValue("Da Nang", forKey: "home")
+//
+//    newStudents.setValue(NSSet.init(object: newAddress), forKey: "address")
+//
+//    do {
+//      try newStudents.managedObjectContext?.save()
+//    } catch {
+//      print(error.localizedDescription)
+//    }
+//  }
+//
+//  fileprivate func fetchSampleCoreData() {
+//    let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+//
+//    let entityDescription = NSEntityDescription.entity(forEntityName: "Student", in: self.managedObjectContext)
+//    fetchRequest.entity = entityDescription
+//
+//    do {
+//      let result = try managedObjectContext.fetch(fetchRequest) as [AnyObject]
+//
+//      for student in result {
+//        print("First Name: \(student.value(forKey: "firstName")) - Last Name: \(student.value(forKey: "lastName")), Address: \(student.value(forKey: "address"))")
+//      }
+//
+//    } catch {
+//      print(error.localizedDescription)
+//    }
+//  }
   
   fileprivate func appInit() {
     window = UIWindow(frame: UIScreen.main.bounds)
-    ter
+    
     let studentList = ListStudentViewController(nibName: "ListStudentViewController", bundle: nil)
     let studentNav = UINavigationController(rootViewController: studentList)
     

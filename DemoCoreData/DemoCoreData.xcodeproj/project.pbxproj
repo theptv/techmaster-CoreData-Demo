@@ -23,6 +23,10 @@
 		B6AB93061FB054ED00D111D6 /* StudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AB93041FB054ED00D111D6 /* StudentTableViewCell.swift */; };
 		B6AB93071FB054ED00D111D6 /* StudentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6AB93051FB054ED00D111D6 /* StudentTableViewCell.xib */; };
 		B6AB930A1FB05D2B00D111D6 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6AB93081FB05D2A00D111D6 /* DataModel.xcdatamodeld */; };
+		B6CAB8771FB45A8A0052E2C1 /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CAB8731FB45A890052E2C1 /* Student+CoreDataClass.swift */; };
+		B6CAB8781FB45A8A0052E2C1 /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CAB8741FB45A890052E2C1 /* Student+CoreDataProperties.swift */; };
+		B6CAB8791FB45A8A0052E2C1 /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CAB8751FB45A890052E2C1 /* Address+CoreDataClass.swift */; };
+		B6CAB87A1FB45A8A0052E2C1 /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CAB8761FB45A8A0052E2C1 /* Address+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +48,10 @@
 		B6AB93041FB054ED00D111D6 /* StudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTableViewCell.swift; sourceTree = "<group>"; };
 		B6AB93051FB054ED00D111D6 /* StudentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StudentTableViewCell.xib; sourceTree = "<group>"; };
 		B6AB93091FB05D2A00D111D6 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		B6CAB8731FB45A890052E2C1 /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B6CAB8741FB45A890052E2C1 /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B6CAB8751FB45A890052E2C1 /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B6CAB8761FB45A8A0052E2C1 /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,7 @@
 		B6AB92D61FB045FA00D111D6 /* DemoCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				B6CAB8721FB45A5E0052E2C1 /* Model */,
 				B6AB92D71FB045FA00D111D6 /* AppDelegate.swift */,
 				B6AB92F01FB0467900D111D6 /* Controllers */,
 				B6AB93031FB0549800D111D6 /* Views */,
@@ -127,6 +136,17 @@
 				B6AB93051FB054ED00D111D6 /* StudentTableViewCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B6CAB8721FB45A5E0052E2C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B6CAB8731FB45A890052E2C1 /* Student+CoreDataClass.swift */,
+				B6CAB8741FB45A890052E2C1 /* Student+CoreDataProperties.swift */,
+				B6CAB8751FB45A890052E2C1 /* Address+CoreDataClass.swift */,
+				B6CAB8761FB45A8A0052E2C1 /* Address+CoreDataProperties.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,9 +230,13 @@
 				B6AB930A1FB05D2B00D111D6 /* DataModel.xcdatamodeld in Sources */,
 				B6AB92EE1FB0466F00D111D6 /* ListStudentViewController.swift in Sources */,
 				B6AB92D81FB045FA00D111D6 /* AppDelegate.swift in Sources */,
+				B6CAB8781FB45A8A0052E2C1 /* Student+CoreDataProperties.swift in Sources */,
+				B6CAB8791FB45A8A0052E2C1 /* Address+CoreDataClass.swift in Sources */,
 				B6AB93011FB0470400D111D6 /* ListTeacherViewController.swift in Sources */,
 				B6AB93061FB054ED00D111D6 /* StudentTableViewCell.swift in Sources */,
+				B6CAB87A1FB45A8A0052E2C1 /* Address+CoreDataProperties.swift in Sources */,
 				B6AB92F31FB046AF00D111D6 /* DetailStudentViewController.swift in Sources */,
+				B6CAB8771FB45A8A0052E2C1 /* Student+CoreDataClass.swift in Sources */,
 				B6AB92F71FB046C100D111D6 /* AddNewStudentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

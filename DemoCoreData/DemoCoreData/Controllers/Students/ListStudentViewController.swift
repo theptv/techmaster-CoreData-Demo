@@ -7,15 +7,51 @@
 //
 
 import UIKit
+import CoreData
 
 class ListStudentViewController: UIViewController {
   
   @IBOutlet weak var studentsTableView: UITableView!
   
+  var students = [Student] ()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupBarButton()
     setupTableView()
+    fetchStudents()
+  }
+  
+  fileprivate func createStudents() {
+    let studentEntity = NSEntityDescription.entity(forEntityName: "Student", in: appDelegate.managedObjectContext)!
+    
+    let newStudent = Student(studentEntity, firstName: "Lucio", lastName: "Lucia")
+    students.append(newStudent)
+    saveContext()
+  }
+  
+  fileprivate func fetchStudents() {
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Student")
+    do {
+      students = try appDelegate.managedObjectContext.fetch(fetchRequest) as! [Student]
+      studentsTableView.reloadData()
+    } catch {
+      print(error.localizedDescription)
+    }
+  }
+  
+  fileprivate func delete(_ student: Student) {
+    appDelegate.managedObjectContext.delete(student)
+    saveContext()
+  }
+  
+  fileprivate func saveContext() {
+    do {
+      try appDelegate.managedObjectContext.save()
+      studentsTableView.reloadData()
+    } catch {
+      print(error.localizedDescription)
+    }
   }
   
   fileprivate func setupTableView() {
@@ -32,24 +68,37 @@ class ListStudentViewController: UIViewController {
   
   
   @objc fileprivate func pushToAddNewStudent(_ sender: UIBarButtonItem) {
-    let addNewStudentVC = AddNewStudentViewController(nibName: "AddNewStudentViewController", bundle: nil)
-    navigationController?.pushViewController(addNewStudentVC, animated: true)
+//    let addNewStudentVC = AddNewStudentViewController(nibName: "AddNewStudentViewController", bundle: nil)
+//    navigationController?.pushViewController(addNewStudentVC, animated: true)
+    
+    createStudents()
   }
 
 }
 
 extension ListStudentViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 0
+    return students.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let studentCell = tableView.dequeueReusableCell(withIdentifier: "StudentTableViewCell", for: indexPath) as? StudentTableViewCell else { return UITableViewCell() }
     
+    studentCell.config(students[indexPath.row])
     return studentCell
   }
 }
 
 extension ListStudentViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      delete(students[indexPath.row])
+      students.remove(at: indexPath.row)
+      tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+  }
   
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    return true
+  }
 }
